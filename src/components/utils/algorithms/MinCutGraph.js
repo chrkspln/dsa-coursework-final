@@ -1,5 +1,3 @@
-import * as d3 from 'd3'
-
 function MinCutGraph(graphAdjacencyList) {
     const minCut = { cutValue: Infinity, partitions: [], edge: null };
     const history = [];

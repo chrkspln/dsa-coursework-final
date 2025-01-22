@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as d3 from 'd3';
 
-const GraphVisualization = ({ graph, history }) => {
+const GraphVisualization = ({ graph }) => {
     const svgRef = useRef();
-    const [edgeColors, setEdgeColors] = useState({});
+    const [animationState, setAnimationState] = useState({
+        isPlaying: false,
+        currentStep: 0,
+    });
+    const steps = graph.historyToAnimate || [];
 
     useEffect(() => {
         const svg = d3.select(svgRef.current);
@@ -41,9 +45,7 @@ const GraphVisualization = ({ graph, history }) => {
             .selectAll('line')
             .data(links)
             .join('line')
-            .attr('data-id', (d) =>
-                `${String(d.source.id)}-${String(d.target.id)}`
-            )
+            .attr('data-id', (d) => `${String(d.source.id)}-${String(d.target.id)}`)
             .attr('stroke', '#999')
             .attr('stroke-width', (d) => Math.sqrt(d.weight));
 
@@ -99,9 +101,22 @@ const GraphVisualization = ({ graph, history }) => {
         });
 
         return () => simulation.stop(); // Cleanup on unmount
-    }, [graph]); // Re-run effect when graph changes
+    }, [graph]);
 
-    useEffect(() => {
+    const animateStep = (stepIndex) => {
+        const step = steps[stepIndex];
+        if (!step) return;
+
+        d3.select(`circle[data-id="${step.vertex}"]`)
+            .transition()
+            .duration(500)
+            .attr('fill', 'red')
+            .transition()
+            .duration(500)
+            .attr('fill', 'green');
+    };
+
+    const animateEdge = () => {
         const animateVertexTraversal = async () => {
             for (const step of graph.historyToAnimate) {
                 await d3.select(`circle[data-id="${step.vertex}"]`)
@@ -141,34 +156,59 @@ const GraphVisualization = ({ graph, history }) => {
                 }
             });
         }
-    }, [graph.historyToAnimate, graph.minCut]); // Re-run animation when historyToAnimate changes
+    }
+
+    const playAnimation = () => {
+        setAnimationState((state) => ({ ...state, isPlaying: true }));
+        let stepIndex = animationState.currentStep;
+
+        const interval = setInterval(() => {
+            if (stepIndex >= steps.length) {
+                clearInterval(interval);
+                setAnimationState((state) => ({ ...state, isPlaying: false }));
+                return;
+            }
+
+            animateStep(stepIndex);
+            stepIndex++;
+            setAnimationState((state) => ({ ...state, currentStep: stepIndex }));
+        }, 330);
+    };
+
+    const pauseAnimation = () => {
+        setAnimationState((state) => ({ ...state, isPlaying: false }));
+    };
+
+    const stepForward = () => {
+        if (animationState.currentStep < steps.length) {
+            animateStep(animationState.currentStep);
+            setAnimationState((state) => ({ ...state, currentStep: state.currentStep + 1 }));
+        }
+    };
+
+    const stepBack = () => {
+        if (animationState.currentStep > 0) {
+            setAnimationState((state) => ({ ...state, currentStep: state.currentStep - 1 }));
+        }
+    };
 
     return (
         <>
-            <svg ref={svgRef}
-                 width={1200} height={500}
-                 style={{border: '1px solid black', margin: '0 0 30px 0'}}>
-                {Object.keys(edgeColors).map((key) => {
-                    const [source, target] = key.split('-');
-                    const edgeColor = edgeColors[key];
-
-                    return (
-                        <line
-                            key={key}
-                            x1={source.x}
-                            y1={source.y}
-                            x2={target.x}
-                            y2={target.y}
-                            stroke={edgeColor}
-                            strokeWidth="2"
-                        />
-                    );
-                })}
-            </svg>
+            <svg
+                ref={svgRef}
+                width={1200}
+                height={500}
+                style={{ border: '1px solid black', margin: '0 0 30px 0' }}
+            ></svg>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                <button onClick={playAnimation} disabled={animationState.isPlaying}>Play</button>
+                <button onClick={pauseAnimation} disabled={!animationState.isPlaying}>Pause</button>
+                <button onClick={stepBack} disabled={animationState.currentStep === 0}>Step Back</button>
+                <button onClick={stepForward} disabled={animationState.currentStep >= steps.length}>Step Forward</button>
+                <button onClick={animateEdge}>Show final Min-Cut</button>
+            </div>
         </>
-
-    )
-        ;
+    );
 };
 
 export default GraphVisualization;
