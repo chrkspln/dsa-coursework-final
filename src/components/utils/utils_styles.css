@@ -1,0 +1,23 @@
+.graph-lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "adjacency-list edges";
+    gap: 10px;
+}
+
+.graph-adjacency-list {
+    grid-area: adjacency-list;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.graph-edges {
+    grid-area: edges;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
