@@ -9,10 +9,19 @@ function App() {
         <Router>
             <div className="App">
                 <header className="App-header">
-                    <h1 className="App-title">Coursework</h1>
+                    <h1 className="App-title">
+                        Курсова робота з дисципліни "Алгоритми та структури даних, частина 3"
+                    </h1>
+                    <h2 className="App-subtitle">
+                        Виконала студентка групи ІР-22, Черкасова Поліна
+                    </h2>
                     <nav className="App-menu">
-                        <Link to="/graph" className="App-link">Min Cut in Graph</Link>
-                        <Link to="/doubly-linked-list" className="App-link">Doubly Linked List</Link>
+                        <Link to="/graph" className="App-link">
+                            Граф
+                        </Link>
+                        <Link to="/doubly-linked-list" className="App-link">
+                            Двозв'язний список
+                        </Link>
                     </nav>
                 </header>
                 <Routes>

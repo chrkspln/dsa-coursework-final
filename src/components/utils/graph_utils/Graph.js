@@ -1,4 +1,4 @@
-import MinCutGraph from "./algorithms/MinCutGraph";
+import MinCutGraph from "./MinCutGraph";
 
 
 class Graph {
@@ -9,7 +9,8 @@ class Graph {
     }
 
     addVertex(vertex) {
-        if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+        if (!this.adjacencyList[vertex])
+            this.adjacencyList[vertex] = [];
     }
 
     addEdge(vertex1, vertex2, weight = 1) {

@@ -15,11 +15,11 @@ const VertexForm = ({ onAddVertex }) => {
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                placeholder="vertex"
+                placeholder="Назва вершини"
                 value={vertex}
                 onChange={(e) => setVertex(e.target.value)}
             />
-            <button type="submit">submit</button>
+            <button type="submit">Додати</button>
         </form>
     );
 };

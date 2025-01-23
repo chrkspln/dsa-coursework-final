@@ -19,23 +19,23 @@ const EdgeForm = ({ onAddEdge }) => {
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                placeholder="vertex1"
+                placeholder="Вершина 1"
                 value={vertex1}
                 onChange={(e) => setVertex1(e.target.value)}
             />
             <input
                 type="text"
-                placeholder="vertex2"
+                placeholder="Вершина 2"
                 value={vertex2}
                 onChange={(e) => setVertex2(e.target.value)}
             />
             <input
                 type="number"
-                placeholder="weight"
+                placeholder="Вага ребра"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
             />
-            <button type="submit">submit</button>
+            <button type="submit">Додати</button>
         </form>
     );
 };

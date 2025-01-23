@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
 
-const AddNodeForm = ({ onAddNode}) => {
+const SearchNodeForm = ({ onSearchNode}) => {
     const [node, setNode] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (node) {
-            onAddNode(node);
+            onSearchNode(node);
             setNode('');
         }
     };
@@ -15,13 +15,15 @@ const AddNodeForm = ({ onAddNode}) => {
         <form onSubmit={handleSubmit}>
             <input
                 type="number"
-                placeholder="node value"
+                placeholder="Значення елемента"
                 value={node}
                 onChange={(e) => setNode(e.target.value)}
             />
-            <button type="submit">submit</button>
+            <button type="submit">
+                Шукати елемент за значенням
+            </button>
         </form>
     );
 };
 
-export default AddNodeForm;
+export default SearchNodeForm;

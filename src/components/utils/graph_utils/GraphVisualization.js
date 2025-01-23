@@ -201,11 +201,19 @@ const GraphVisualization = ({ graph }) => {
                 style={{ border: '1px solid black', margin: '0 0 30px 0' }}
             ></svg>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                <button onClick={playAnimation} disabled={animationState.isPlaying}>Play</button>
-                <button onClick={pauseAnimation} disabled={!animationState.isPlaying}>Pause</button>
-                <button onClick={stepBack} disabled={animationState.currentStep === 0}>Step Back</button>
-                <button onClick={stepForward} disabled={animationState.currentStep >= steps.length}>Step Forward</button>
-                <button onClick={animateEdge}>Show final Min-Cut</button>
+                <button onClick={playAnimation} disabled={animationState.isPlaying}>
+                    Почати анімацію
+                </button>
+                <button onClick={pauseAnimation} disabled={!animationState.isPlaying}>
+                    Пауза
+                </button>
+                <button onClick={stepBack} disabled={animationState.currentStep === 0}>
+                    Крок назад
+                </button>
+                <button onClick={stepForward} disabled={animationState.currentStep >= steps.length}>
+                    Крок вперед
+                </button>
+                <button onClick={animateEdge}>Показати мінімальний переріз</button>
             </div>
         </>
     );

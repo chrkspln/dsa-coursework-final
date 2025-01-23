@@ -1,8 +1,8 @@
-import DoublyLinkedList from "../utils/DoublyLinkedList";
+import DoublyLinkedList from "../utils/dll_utils/DoublyLinkedList";
 import React, {useState} from "react";
-import DoublyLinkedListVisualization from "../utils/DoublyLinkedListVisualization";
-import AddNodeForm from "../utils/AddNodeForm";
-import DeleteNodeForm from "../utils/DeleteNodeForm";
+import DoublyLinkedListVisualization from "../utils/dll_utils/DoublyLinkedListVisualization";
+import AddNodeForm from "../utils/dll_utils/AddNodeForm";
+import DeleteNodeForm from "../utils/dll_utils/DeleteNodeForm";
 
 function DoublyLinkedListPage() {
     const [dll, setDoublyLinkedList] = useState(new DoublyLinkedList());
@@ -10,14 +10,16 @@ function DoublyLinkedListPage() {
     return (
         <div className="DoublyLinkedList">
             <h1>
-                Visualization of Addition, Deletion and Search in Doubly Linked List
+                Візуалізація додавання, видалення та пошуку елементів із двозв'язного списку
             </h1>
 
             <div className="dll-container">
                 <div className="controls">
                     <div>
                         <div className="ars-dll">
-                            <h2>Add Node by value to the DLL</h2>
+                            <h2>
+                                Додати елемент у двозв'язний список
+                            </h2>
                             <AddNodeForm
                                 onAddNode={(node) => {
                                     const updatedDoublyLinkedList = new DoublyLinkedList();
@@ -26,7 +28,9 @@ function DoublyLinkedListPage() {
                                     setDoublyLinkedList(updatedDoublyLinkedList);
                                 }}
                             />
-                            <h2>Remove node by value from the DLL</h2>
+                            <h2>
+                                Видалити елемент із двозв'язного списку
+                            </h2>
                             <DeleteNodeForm
                                 onDeleteNode={(node) => {
                                     const updatedDoublyLinkedList = new DoublyLinkedList();
@@ -39,17 +43,15 @@ function DoublyLinkedListPage() {
                     </div>
                     <div className="control-buttons">
                         <div className="reset-dll">
-                            <h2>Reset DoublyLinkedList</h2>
                             <button
                                 onClick={() => {
                                     setDoublyLinkedList(new DoublyLinkedList());
                                 }}
                             >
-                                Reset
+                                Скинути двозв'язний список
                             </button>
                         </div>
                         <div className="example-dll">
-                            <h2>Example DoublyLinkedList</h2>
                             <button
                                 onClick={() => {
                                     const updatedDoublyLinkedList = new DoublyLinkedList();
@@ -58,7 +60,7 @@ function DoublyLinkedListPage() {
                                     setDoublyLinkedList(updatedDoublyLinkedList);
                                 }}
                             >
-                                Randomize
+                                Приклад двозв'язного списку
                             </button>
                         </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './utils_styles.css';
+import '../utils_styles.css';
 
 const GraphAdjacencyList = ({ graph }) => {
     const adjacencyList = graph.getAdjacencyList();
@@ -16,7 +16,9 @@ const GraphAdjacencyList = ({ graph }) => {
     return (
         <div className={'graph-lists'}>
             <div className={'graph-adjacency-list'}>
-            <h2>adjacencyList</h2>
+            <h2>
+                Список суміжності графу
+            </h2>
             <ul>
                 {Object.entries(adjacencyList).map(([vertex, edges]) => (
                     <li key={vertex}>
@@ -26,7 +28,9 @@ const GraphAdjacencyList = ({ graph }) => {
             </ul>
                 </div>
 <div className={'graph-edges'}>
-            <h2>edges</h2>
+            <h2>
+                Список ребер графу
+            </h2>
             <ul>
                 {edges.map((edge, index) => (
                     <li key={index}>{edge}</li>

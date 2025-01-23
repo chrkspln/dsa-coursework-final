@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 
-const SearchNodeForm = ({ onSearchNode}) => {
+const DeleteNodeForm = ({ onDeleteNode}) => {
     const [node, setNode] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (node) {
-            onSearchNode(node);
+            onDeleteNode(node);
             setNode('');
         }
     };
@@ -15,13 +15,15 @@ const SearchNodeForm = ({ onSearchNode}) => {
         <form onSubmit={handleSubmit}>
             <input
                 type="number"
-                placeholder="node value"
+                placeholder="Значення елемента"
                 value={node}
                 onChange={(e) => setNode(e.target.value)}
             />
-            <button type="submit">submit</button>
+            <button type="submit">
+                Видалити
+            </button>
         </form>
     );
 };
 
-export default SearchNodeForm;
+export default DeleteNodeForm;

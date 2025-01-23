@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as d3 from 'd3';
-import SearchNodeForm from "./SearchNodeFormm";
+import SearchNodeForm from "./SearchNodeForm";
 
 const DoublyLinkedListVisualization = ({ dll }) => {
     const svgRef = useRef();
@@ -126,19 +126,35 @@ const DoublyLinkedListVisualization = ({ dll }) => {
                 height={500}
                 style={{ border: '1px solid black', margin: '0 0 30px 0' }}
             ></svg>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '10px',
+                marginTop: '20px'
+            }}>
 
-                <h2>Search node by value in the DLL</h2>
                 <SearchNodeForm
                     onSearchNode={(node) => {
                         dll.searchNode(node);
                         playAnimation();
                     }}
                 />
-                <button onClick={playAnimation} disabled={animationState.isPlaying}>Play</button>
-                <button onClick={pauseAnimation} disabled={!animationState.isPlaying}>Pause</button>
-                <button onClick={stepBack} disabled={animationState.currentStep === 0}>Step Back</button>
-                <button onClick={stepForward} disabled={animationState.currentStep >= history.length}>Step Forward</button>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                    <button onClick={playAnimation} disabled={animationState.isPlaying}>
+                        Почати анімацію
+                    </button>
+                    <button onClick={pauseAnimation} disabled={!animationState.isPlaying}>
+                        Пауза
+                    </button>
+                    <button onClick={stepBack} disabled={animationState.currentStep === 0}>
+                        Крок назад
+                    </button>
+                    <button onClick={stepForward} disabled={animationState.currentStep >= history.length}>
+                        Крок вперед
+                    </button>
+                </div>
+
             </div>
         </>
     );

@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 
-const DeleteNodeForm = ({ onDeleteNode}) => {
+const AddNodeForm = ({ onAddNode}) => {
     const [node, setNode] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (node) {
-            onDeleteNode(node);
+            onAddNode(node);
             setNode('');
         }
     };
@@ -15,13 +15,15 @@ const DeleteNodeForm = ({ onDeleteNode}) => {
         <form onSubmit={handleSubmit}>
             <input
                 type="number"
-                placeholder="node value"
+                placeholder="Значення елемента"
                 value={node}
                 onChange={(e) => setNode(e.target.value)}
             />
-            <button type="submit">submit</button>
+            <button type="submit">
+                Додати
+            </button>
         </form>
     );
 };
 
-export default DeleteNodeForm;
+export default AddNodeForm;

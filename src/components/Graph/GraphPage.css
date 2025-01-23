@@ -164,7 +164,7 @@ h2 {
 .min-cut {
     grid-area: min-cut;
     background-color: #f9f9f9;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }

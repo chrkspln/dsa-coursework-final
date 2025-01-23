@@ -1,9 +1,9 @@
-import Graph from "../utils/Graph";
-import VertexForm from "../utils/VertexForm";
-import EdgeForm from "../utils/EdgeForm";
-import GraphVisualization from "../utils/GraphVisualization";
+import Graph from "../utils/graph_utils/Graph";
+import VertexForm from "../utils/graph_utils/VertexForm";
+import EdgeForm from "../utils/graph_utils/EdgeForm";
+import GraphVisualization from "../utils/graph_utils/GraphVisualization";
 import {useState} from "react";
-import GraphAdjacencyList from "../utils/GraphAdjacencyList";
+import GraphAdjacencyList from "../utils/graph_utils/GraphAdjacencyList";
 import './GraphPage.css';
 
 function GraphPage() {
@@ -12,13 +12,15 @@ function GraphPage() {
     return (
         <div className="Graph">
             <h1>
-                Visualization of Min Cut in GraphPage
+                Візуалізація знаходження мінімального перерізу у графі за допомогою алгоритма Стоера-Вагнера
             </h1>
 
             <div className="graph-container">
                 <div className="controls">
                     <div>
-                        <h2>Add Vertex</h2>
+                        <h2>
+                            Додати нову вершину
+                        </h2>
                         <VertexForm
                             onAddVertex={(vertex) => {
                                 const updatedGraph = new Graph();
@@ -29,7 +31,9 @@ function GraphPage() {
                         />
                     </div>
                     <div>
-                        <h2>Add Edge</h2>
+                        <h2>
+                            Додати нове ребро
+                        </h2>
                         <EdgeForm
                             onAddEdge={(vertex1, vertex2, weight) => {
                                 const updatedGraph = new Graph();
@@ -41,17 +45,15 @@ function GraphPage() {
                     </div>
                     <div className="control-buttons">
                         <div className="reset-graph">
-                            <h2>Reset Graph</h2>
                             <button
                                 onClick={() => {
                                     setGraph(new Graph());
                                 }}
                             >
-                                Reset
+                                Скинути налаштування графу
                             </button>
                         </div>
                         <div className="example-graph">
-                            <h2>Example Graph</h2>
                             <button
                                 onClick={() => {
                                     const updatedGraph = new Graph();
@@ -60,7 +62,7 @@ function GraphPage() {
                                     setGraph(updatedGraph);
                                 }}
                             >
-                                Randomize
+                                Приклад графу
                             </button>
                         </div>
                         <div className="min-cut">
@@ -71,7 +73,7 @@ function GraphPage() {
                                     updatedGraph.findMinCut();
                                     setGraph(updatedGraph);
                                 }}>
-                                Calculate Min Cut
+                                Вирахувати мінімальний переріз графу
                             </button>
                         </div>
                     </div>
