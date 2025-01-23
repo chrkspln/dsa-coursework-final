@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import GraphPage from "./components/Graph/GraphPage";
-import DoublyLinkedList from "./components/DoublyLinkedList/DoublyLinkedList";
+import DoublyLinkedList from "./components/DoublyLinkedList/DoublyLinkedListPage";
 
 function App() {
     return (
